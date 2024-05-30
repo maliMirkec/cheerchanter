@@ -17,8 +17,7 @@
   <script>
   const team = ["#FDE100", "#000"]
   const url = '/.netlify/functions/d'
-  let interval = 1
-  let ts = false
+  let interval = 10
 
   const getTs = async () => {
     const response = await fetch(url)
@@ -27,23 +26,11 @@
   }
 
   const modulo = async () => {
-    const start = !ts
+    const s = new Date().getSeconds()
 
-    if(start) {
-      await getTs()
-    }
+    document.body.innerHTML = s
 
-    console.log(interval);
-
-    ts += interval
-
-    if(ts % 1000 === 0) {
-      interval = 1000
-    }
-
-    document.body.innerHTML = ts
-
-    document.body.style.setProperty('--bg', team[Math.floor(ts / 1000) % team.length])
+    document.body.style.setProperty('--bg', team[Math.floor(s % team.length)])
 
     setTimeout(modulo, interval)
   }
