@@ -1,5 +1,5 @@
 export default async (req, con) => {
   return Response.json({
-    ms: new Date().getMilliseconds()
+    ts: new Date().valueOf()
   })
 }

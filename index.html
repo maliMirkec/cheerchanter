@@ -8,6 +8,7 @@
   body {
     --bg: #FDE100;
     background-color: var(--bg);
+    color: gray;
     transition: background-color 111ms 111ms;
   }
   </style>
@@ -17,24 +18,24 @@
   const team = ["#FDE100", "#000"]
   const url = '/.netlify/functions/d'
   const interval = 60
-  let ms = false
+  let ts = false
 
-  const getMs = async () => {
+  const getTs = async () => {
     const response = await fetch(url)
     const d = await response.json()
-    ms = d.ms
+    ts = d.ts
   }
 
   const modulo = async () => {
-    if(!ms) {
-      await getMs()
+    if(!ts) {
+      await getTs()
     }
 
-    ms += interval
+    ts += interval
 
-    document.body.innerHTML = ms
+    document.body.innerHTML = ts
 
-    document.body.style.setProperty('--bg', team[Math.floor(ms / 1000) % team.length])
+    document.body.style.setProperty('--bg', team[Math.floor(ts / 1000) % team.length])
 
     setTimeout(modulo, interval)
   }
