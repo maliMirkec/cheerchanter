@@ -17,7 +17,7 @@
   <script>
   const team = ["#FDE100", "#000"]
   const url = '/.netlify/functions/d'
-  const interval = 1000
+  let interval = 1
   let ts = false
 
   const getTs = async () => {
@@ -33,15 +33,19 @@
       await getTs()
     }
 
+    console.log(interval);
+
     ts += interval
+
+    if(ts % 1000 === 0) {
+      interval = 1000
+    }
 
     document.body.innerHTML = ts
 
     document.body.style.setProperty('--bg', team[Math.floor(ts / 1000) % team.length])
 
-    if(start) {
-      setInterval(modulo, interval)
-    }
+    setTimeout(modulo, interval)
   }
 
   modulo()
