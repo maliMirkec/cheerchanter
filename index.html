@@ -16,7 +16,7 @@
   <script>
   const team = ["#FDE100", "#000"]
   const url = '/.netlify/functions/d'
-  const interval = 10
+  const interval = 60
   let ms = false
 
   const getMs = async () => {
@@ -32,7 +32,9 @@
 
     ms += interval
 
-    document.body.style.setProperty('--bg', team[Math.round(ms / 1000) % team.length])
+    document.body.innerHTML = ms
+
+    document.body.style.setProperty('--bg', team[Math.floor(ms / 1000) % team.length])
 
     setTimeout(modulo, interval)
   }
