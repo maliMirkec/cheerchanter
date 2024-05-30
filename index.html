@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CC</title>
+  <style>
+  body {
+    --bg: #FDE100;
+    background-color: var(--bg);
+    transition: background-color 111ms 111ms;
+  }
+  </style>
+</head>
+<body>
+  <script>
+  const team = ["#FDE100", "#000"]
+  const url = '/.netlify/functions/d'
+  const interval = 10
+  let ms = false
+
+  const getMs = async () => {
+    const response = await fetch(url)
+    const d = await response.json()
+    ms = d.ms
+  }
+
+  const modulo = async () => {
+    if(!ms) {
+      await getMs()
+    }
+
+    ms += interval
+
+    document.body.style.setProperty('--bg', team[Math.round(ms / 1000) % team.length])
+
+    setTimeout(modulo, interval)
+  }
+
+  modulo()
+  </script>
+</body>
+</html>
