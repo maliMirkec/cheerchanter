@@ -6,36 +6,109 @@
   <title>CC</title>
   <style>
   body {
-    --bg: #FDE100;
-    background-color: var(--bg);
-    color: gray;
-    transition: background-color 111ms;
+    font-family: Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif;
+    min-block-size: 100dvh;
+    text-align: center;
+  }
+  body,
+  ul {
+    margin: unset;
+  }
+  body,
+  header,
+  main,
+  ul,
+  li,
+  main a {
+    display: flex;
+    flex-direction: column;
+  }
+  ul {
+    padding: unset;
+    margin-block-end: 1rem;
+  }
+  main,
+  ul,
+  li {
+    flex: 1;
+  }
+  h1,
+  header p {
+    font-weight: normal;
+    padding-inline: 2rem;
+  }
+  main a {
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 2rem;
+    border-right: 2rem solid;
+    transition: all 111ms;
+  }
+  h1 {
+    font-size: clamp(2rem, 1.579rem + 2.105vw, 3rem);
+    text-align: left;
+    margin-inline: auto;
+    line-height: .75;
+    position: relative;
+  }
+  h1:after {
+    content: ".com";
+    position: absolute;
+    font-size: 50%;
+    inset-block-end: 2.5%;
+    inset-inline-start: calc(98% - 2rem);
+  }
+  h1,
+  p:not(:last-of-type) {
+    margin-block-end: unset;
+  }
+  header p,
+  main a {
+    font-size: clamp(1rem, 0.579rem + 2.105vw, 2rem);
+  }
+  small {
+    font-size: 70%;
+  }
+  footer a {
+    color: inherit;
+  }
+  .bvb {
+    background-color: #FDE10044;
+    border-color: #FDE100;
+    color: #000;
+  }
+  .bvb:hover,
+  .bvb:focus,
+  .bvb:active {
+    background-color: #FDE100;
+  }
+  .rm {
+    background-color: #00529F44;
+    border-right: 2rem solid #00529F;
+    color: #00529F;
+  }
+  .rm:hover,
+  .rm:focus,
+  .rm:active {
+    background-color: #00529F;
+    color: #fff;
   }
   </style>
 </head>
 <body>
-  <script>
-  const team = ["#FDE100", "#000"]
-  const url = '/.netlify/functions/d'
-  let interval = 10
-
-  const getTs = async () => {
-    const response = await fetch(url)
-    const d = await response.json()
-    ts = d.ts
-  }
-
-  const modulo = async () => {
-    const s = new Date().getSeconds()
-
-    document.body.innerHTML = s
-
-    document.body.style.setProperty('--bg', team[Math.floor(s % team.length)])
-
-    setTimeout(modulo, interval)
-  }
-
-  modulo()
-  </script>
+  <header>
+    <h1>Cheer<br>Chanter</h1>
+    <p>Show support for your team<br><small>(Best used in large group of supporters)</small></p>
+  </header>
+  <main>
+    <ul>
+      <li><a class="bvb" href="/bvb.html">Borussia Dortmund</a></li>
+      <li><a class="rm" href="/rm.html">Real Madrid</a></li>
+    </ul>
+  </main>
+  <footer>
+    <p>&copy; <a href="//www.silvestar.codes">SB, 2024</a></p>
+  </footer>
 </body>
 </html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CC</title>
+  <style>
+  body {
+    --bg: #FDE100;
+    background-color: var(--bg);
+    color: gray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-block-size: 100dvh;
+    transition: background-color 111ms;
+  }
+  img {
+    block-size: 33.33dvmax;
+  }
+  </style>
+</head>
+<body>
+  <img src="/bvb.svg" alt="Borussia Dortmund">
+  <script>
+  const team = ["#FDE100", "#000"]
+  const url = '/.netlify/functions/d'
+  let interval = 10
+
+  const getTs = async () => {
+    const response = await fetch(url)
+    const d = await response.json()
+    ts = d.ts
+  }
+
+  const modulo = async () => {
+    const s = new Date().getSeconds()
+
+    document.body.style.setProperty('--bg', team[Math.floor(s % team.length)])
+
+    setTimeout(modulo, interval)
+  }
+
+  modulo()
+  </script>
+</body>
+</html>
