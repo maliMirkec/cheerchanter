@@ -3,11 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CC</title>
+  <title>Real Madrid | Cheer Chanter</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#000000">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
   <style>
-  body {
+  html {
     --bg: #00529F;
     background-color: var(--bg);
+  }
+  body {
     color: gray;
     display: flex;
     flex-direction: column;
@@ -34,6 +43,7 @@
   const team = ["#00529F", "#fff"]
   const url = '/.netlify/functions/d'
   let interval = 10
+  console.log('document', document);
 
   const getTs = async () => {
     const response = await fetch(url)
@@ -44,7 +54,7 @@
   const modulo = async () => {
     const s = new Date().getSeconds()
 
-    document.body.style.setProperty('--bg', team[Math.floor(s % team.length)])
+    document.html.style.setProperty('--bg', team[Math.floor(s % team.length)])
 
     setTimeout(modulo, interval)
   }
@@ -54,14 +64,14 @@
   function fullscreen() {
     const elem = document.body
 
-    if (elem.requestFullscreen) {
-        elem.requestFullscreen();
-    } else if (elem.mozRequestFullScreen) { // Firefox
-        elem.mozRequestFullScreen();
-    } else if (elem.webkitRequestFullscreen) { // Chrome, Safari and Opera
-        elem.webkitRequestFullscreen();
-    } else if (elem.msRequestFullscreen) { // IE/Edge
-        elem.msRequestFullscreen();
+    if(elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if(elem.mozRequestFullScreen) {
+      elem.mozRequestFullScreen();
+    } else if(elem.webkitRequestFullscreen) {
+      elem.webkitRequestFullscreen();
+    } else if(elem.msRequestFullscreen) {
+      elem.msRequestFullscreen();
     }
   }
   </script>
