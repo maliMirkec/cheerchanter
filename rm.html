@@ -53,7 +53,7 @@
   const modulo = async () => {
     const s = new Date().getSeconds()
 
-    document.html.style.setProperty('--bg', team[Math.floor(s % team.length)])
+    document.documentElement.style.setProperty('--bg', team[Math.floor(s % team.length)])
 
     setTimeout(modulo, interval)
   }

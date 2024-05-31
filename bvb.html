@@ -12,9 +12,11 @@
   <meta name="msapplication-TileColor" content="#ffffff">
   <meta name="theme-color" content="#ffffff">
   <style>
-  body {
+  html {
     --bg: #FDE100;
     background-color: var(--bg);
+  }
+  body {
     color: gray;
     display: flex;
     flex-direction: column;
@@ -50,7 +52,7 @@
   const modulo = async () => {
     const s = new Date().getSeconds()
 
-    document.body.style.setProperty('--bg', team[Math.floor(s % team.length)])
+    document.documentElement.style.setProperty('--bg', team[Math.floor(s % team.length)])
 
     setTimeout(modulo, interval)
   }
