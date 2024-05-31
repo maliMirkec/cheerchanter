@@ -38,7 +38,6 @@
 </head>
 <body>
   <img src="/rm.svg" alt="Real Madrid">
-  <button onclick="fullscreen()">Full-screen</button>
   <script>
   const team = ["#00529F", "#fff"]
   const url = '/.netlify/functions/d'
@@ -60,20 +59,6 @@
   }
 
   modulo()
-
-  function fullscreen() {
-    const elem = document.body
-
-    if(elem.requestFullscreen) {
-      elem.requestFullscreen();
-    } else if(elem.mozRequestFullScreen) {
-      elem.mozRequestFullScreen();
-    } else if(elem.webkitRequestFullscreen) {
-      elem.webkitRequestFullscreen();
-    } else if(elem.msRequestFullscreen) {
-      elem.msRequestFullscreen();
-    }
-  }
   </script>
 </body>
 </html>
