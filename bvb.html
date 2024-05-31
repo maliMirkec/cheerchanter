@@ -15,15 +15,21 @@
     justify-content: center;
     text-align: center;
     min-block-size: 100dvh;
+    margin: unset;
     transition: background-color 111ms;
   }
   img {
     block-size: 33.33dvmax;
+    max-inline-size: 100%;
+  }
+  button {
+    border: unset;
   }
   </style>
 </head>
 <body>
   <img src="/bvb.svg" alt="Borussia Dortmund">
+  <button onclick="fullscreen()">Full-screen</button>
   <script>
   const team = ["#FDE100", "#000"]
   const url = '/.netlify/functions/d'
@@ -44,6 +50,20 @@
   }
 
   modulo()
+
+  function fullscreen() {
+    // Supports most browsers and their versions.
+    var requestMethod = document.body.requestFullScreen || document.body.webkitRequestFullScreen || document.body.mozRequestFullScreen || document.body.msRequestFullScreen;
+
+    if (requestMethod) { // Native full screen.
+        requestMethod.call(document.body);
+    } else if (typeof window.ActiveXObject !== "undefined") { // Older IE.
+        var wscript = new ActiveXObject("WScript.Shell");
+        if (wscript !== null) {
+            wscript.SendKeys("{F11}");
+        }
+    }
+  }
   </script>
 </body>
 </html>
